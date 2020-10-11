@@ -11,3 +11,7 @@ RUN wget -O CC26X2R1.zip https://raw.githubusercontent.com/Koenkk/Z-Stack-firmwa
     wget -O cc2538-bsl.zip https://codeload.github.com/JelmerT/cc2538-bsl/zip/master && \
     unzip cc2538-bsl.zip && \
     pip3 install pyserial intelhex
+
+COPY run.sh /run.sh
+RUN ["chmod", "a+x", "./run.sh"]
+CMD [ "./run.sh" ]

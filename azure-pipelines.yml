@@ -6,7 +6,7 @@ trigger:
   batch: true
   branches:
     include:
-    - dev
+    - master
 pr: none
 pool:
   vmImage: "ubuntu-latest"
