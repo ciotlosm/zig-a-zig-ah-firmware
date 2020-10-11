@@ -1,6 +1,6 @@
 {
     "name": "Zig-a-zig-ah Firmware",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "slug": "zig-a-zig-ah-firmware",
     "description": "Zig-a-zig-ah Firmware add-on",
     "auto_uart": true,
