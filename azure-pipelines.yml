@@ -1,0 +1,41 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+trigger:
+  batch: true
+  branches:
+    include:
+    - dev
+pr: none
+pool:
+  vmImage: "ubuntu-latest"
+
+
+jobs:
+- job: generator
+  steps:
+  - bash: |
+      # Retrieve supported achitectures from config.json
+      ARCH="$(jq -r -c '.arch | map( { (.|tostring): { 'archvar': .} } ) | add' ./zig-a-zig-ah-firmware/config.json)"
+      # Prepare matrix run for job to allow parallel architecture build
+      echo "##vso[task.setVariable variable=archList;isOutput=true]$ARCH"
+    name: mtrx
+    displayName: Generate arch jobs
+- job: build
+  dependsOn: generator
+  strategy:
+    matrix: $[ dependencies.generator.outputs['mtrx.archList'] ]
+  steps:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'DockerHub'
+      command: 'login'
+    displayName: Login to docker hub
+  - script: |
+      docker run --rm --privileged \
+          -v $DOCKER_CONFIG:/root/.docker \
+          -v /run/docker.sock:/run/docker.sock:rw \
+          -v $(pwd)/zig-a-zig-ah-firmware:/data homeassistant/amd64-builder --$(archvar) -t /data \
+          --no-cache
+    displayName: Building $(archvar)
