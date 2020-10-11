@@ -1,3 +1,6 @@
+# 0.0.3
+- Added config support to specify serial port
+
 # 0.0.2
 - Added startup script for automatic flashing
 

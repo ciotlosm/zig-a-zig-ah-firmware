@@ -1,4 +1,13 @@
 # Zig-a-zig-ah documentation
-```
-./cc2538-bsl-master/cc2538-bsl.py -p /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0 -evw znp_CC26X2R1_LAUNCHXL_tirtos_ccs.hex
-```
+
+## Steps
+
+- Stop all Zigbee2mqtt add-ons
+- Remove the usb stick
+- Open the case of the stick
+- While holding the button pressed, reinsert the usb stick
+- Start the add-on
+
+Note: If it succeeds, you will see a message in the log. 
+
+- After flashing is complete, start your zigbee2mqtt add-on
