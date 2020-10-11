@@ -1,5 +1,5 @@
 # Zig-a-zig-ah Firmware add-on
-Add-on to manage automatically proper addon version
+Manage easier your zzh! firmware for zigbee2mqtt.
 
 Read more about how to use this in the [documentation](https://github.com/ciotlosm/zig-a-zig-ah-firmware/blob/master/zig-a-zig-ah-firmware/DOCS.md)
 
